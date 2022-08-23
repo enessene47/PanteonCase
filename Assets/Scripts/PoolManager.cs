@@ -1,70 +1,117 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : MonoSingleton<PoolManager>
 {
     [SerializeField] private GameObject _objectPrefabBarrack;
     [SerializeField] private GameObject _objectPrefabPowerPlant;
+    [SerializeField] private GameObject _objectSoldierPlant;
 
     [SerializeField] private int _poolSizeBarrackPowerPlant;
 
-    private Queue<BuilderScript> _pooledBarrack;
+    private Queue<BarrackScript> _pooledBarrack;
 
-    private Queue<BuilderScript> _pooledPowerPlant;
+    private Queue<PowerPlateScript> _pooledPowerPlant;
+
+    private Queue<SoldierScript> _pooledSoldier;
 
     private void Awake() => CreateBarrack();
 
     private void CreateBarrack()
     {
-        _pooledBarrack = new Queue<BuilderScript>();
+        _pooledBarrack = new Queue<BarrackScript>();
 
-        _pooledPowerPlant = new Queue<BuilderScript>();
+        _pooledPowerPlant = new Queue<PowerPlateScript>();
+
+        _pooledSoldier = new Queue<SoldierScript>();
 
         for (int i = 0; i < _poolSizeBarrackPowerPlant; i++)
         {
-            GameObject barrack = Instantiate(_objectPrefabBarrack);
-            GameObject powerPlant = Instantiate(_objectPrefabPowerPlant);
-
-            barrack.SetActive(false);
-            powerPlant.SetActive(false);
-
-            barrack.hideFlags = HideFlags.HideInHierarchy;
-            powerPlant.hideFlags = HideFlags.HideInHierarchy;
-
-            _pooledBarrack.Enqueue(barrack.GetComponent<BuilderScript>());
-            _pooledPowerPlant.Enqueue(powerPlant.GetComponent<BuilderScript>());
+            InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+            InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+            InstantiateObject(_objectSoldierPlant, _pooledSoldier);
         }
     }
 
-    public BuilderScript GetBuilderObject(MenuItemScript.Type type, Vector2 builderPos)
+    private void InstantiateObject<T>(GameObject prefab, Queue<T> queue)
     {
-        BuilderScript builder = null;
+        GameObject obj = Instantiate(prefab);
 
-        switch (type)
-        {
-            case MenuItemScript.Type.Barrack: builder = _pooledBarrack.Dequeue(); break;
-            case MenuItemScript.Type.PowerPlate: builder = _pooledPowerPlant.Dequeue(); break;
-            default: builder = _pooledBarrack.Dequeue(); break;
-        }
+        obj.SetActive(false);
 
-        builder.gameObject.SetActive(true);
-
-        builder.GetTransform.position = builderPos;
-
-        return builder; 
+        queue.Enqueue(obj.GetComponent<T>());
     }
 
-    public void SetBuilderkObject(BuilderScript builder)
+    private void BackPool<T>(GameObject obj, Queue<T> queue, T t)
     {
-        switch (builder.GetType)
+        queue.Enqueue(t);
+
+        obj.SetActive(false);
+    }
+
+    public BarrackScript GetBarrackObject(Vector2 builderPos)
+    {
+        if (_pooledBarrack.Count == 0)
+            InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+
+        BarrackScript barrackScript = _pooledBarrack.Dequeue();
+
+        barrackScript.gameObject.SetActive(true);
+
+        barrackScript.GetTransform.position = builderPos;
+
+        return barrackScript; 
+    }
+
+    public PowerPlateScript GetPowerPlateObject(Vector2 builderPos)
+    {
+        if (_pooledPowerPlant.Count == 0)
+            InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+
+        PowerPlateScript powerPlateScript = _pooledPowerPlant.Dequeue();
+
+        powerPlateScript.gameObject.SetActive(true);
+
+        powerPlateScript.GetTransform.position = builderPos;
+
+        return powerPlateScript;
+    }
+
+    public void SetBuilder<T>(T t)
+    {
+        if (t is BarrackScript)
         {
-            case MenuItemScript.Type.Barrack: _pooledBarrack.Enqueue(builder); break;
-            case MenuItemScript.Type.PowerPlate: _pooledPowerPlant.Enqueue(builder); break;
-            default: _pooledBarrack.Enqueue(builder); break;
+            var obj = (BarrackScript)Convert.ChangeType(t, typeof(BarrackScript));
+
+            BackPool(obj.gameObject, _pooledBarrack, obj);
+        }
+        else if (t is PowerPlateScript)
+        {
+            var obj = (PowerPlateScript)Convert.ChangeType(t, typeof(PowerPlateScript));
+
+            BackPool(obj.gameObject, _pooledPowerPlant, obj);
+        }
+        else if(t is SoldierScript)
+        {
+            var obj = (SoldierScript)Convert.ChangeType(t, typeof(SoldierScript));
+
+            BackPool(obj.gameObject, _pooledSoldier, obj);
         }
 
-        builder.gameObject.SetActive(false);
+    }
 
-        _pooledBarrack.Enqueue(builder);
+    public SoldierScript GetSoldierObject(Vector2 builderPos)
+    {
+        if (_pooledSoldier.Count == 0)
+            InstantiateObject(_objectSoldierPlant, _pooledSoldier);
+
+        SoldierScript soldier = _pooledSoldier.Dequeue();
+
+        soldier.gameObject.SetActive(true);
+
+        soldier.GetTransform.position = builderPos;
+
+        return soldier;
     }
 }

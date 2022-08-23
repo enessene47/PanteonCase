@@ -7,22 +7,46 @@ public class InputManager : MonoSingleton<InputManager>
 {
     //private Action _onDown;
 
-    private BuilderScript _builder;
+    private IInformation _builder;
+
+    [SerializeField] AstarPath astarPath;
+
+    private SoldierScript _soldier;
+
+    public SoldierScript Soldier
+    {
+        set => _soldier = value;
+    }
 
 
-    public void SetBuilder(BuilderScript builder) => _builder = builder;
+    public void SetBuilder(IInformation builder) => _builder = builder;
 
     private void Update()
     {
         if (Input.GetMouseButton(0) && _builder != null)
         {
-            _builder.GetTransform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _builder.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
         else if(Input.GetMouseButtonUp(0) && _builder != null)
         {
-            PoolManager.Instance.SetBuilderkObject(_builder);
+            Transform trs = GridManager.Instance.CalculateDistance(_builder);
+
+            if (trs != null)
+                _builder.transform.position = trs.position;
+            else
+                PoolManager.Instance.SetBuilder(_builder);
 
             _builder = null;
+
+            _soldier = null;
+
+            astarPath.Scan();
         }
+    }
+
+    public void SoldierSetTarget(Transform trs)
+    {
+        if(_soldier != null)
+            _soldier.SetTarget(trs);
     }
 }

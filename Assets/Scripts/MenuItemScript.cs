@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuItemScript : MonoSingleton<MenuItemScript>
+public class MenuItemScript : MonoBehaviour
 {
     public enum Type {Barrack, PowerPlate, Soldier}
 
@@ -10,6 +10,11 @@ public class MenuItemScript : MonoSingleton<MenuItemScript>
 
     public void OnDown()
     {
-        InputManager.Instance.SetBuilder(PoolManager.Instance.GetBuilderObject(type, Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+        if (type == Type.Barrack)
+            InputManager.Instance.SetBuilder(PoolManager.Instance.GetBarrackObject(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+        else if(type == Type.PowerPlate)
+            InputManager.Instance.SetBuilder(PoolManager.Instance.GetPowerPlateObject(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+        else if(type == Type.Soldier)
+            InputManager.Instance.SetBuilder(PoolManager.Instance.GetSoldierObject(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
     }
 }
