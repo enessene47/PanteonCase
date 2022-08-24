@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d487acb7773ad429bcdd665d13f2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boxCollider2D: {fileID: 7322558911000239438}
   _aIDestinationSetter: {fileID: 8639756005854014828}
   _spriteRenderer: {fileID: 1878036478894150910}
   _aIPath: {fileID: 9010312014025970041}

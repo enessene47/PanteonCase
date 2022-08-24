@@ -46,6 +46,10 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
             _spriteRenderer.color = Color.white;
 
             _builder = true;
+
+            _boxCollider2D.enabled = false;
+
+            _boxCollider2D.enabled = true;
         }
     }
 

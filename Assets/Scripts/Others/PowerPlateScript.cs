@@ -55,6 +55,10 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
             _spriteRenderer.color = Color.white;
 
             _builder = true;
+
+            _boxCollider2D.enabled = false;
+
+            _boxCollider2D.enabled = true;
         }
     }
 
@@ -84,6 +88,8 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         energyAnim.SetActive(false);
         energyAnim.SetActive(true);
+
+        DataManager.Instance.Energy = 1;
     }
 
     public bool IsActive => gameObject.activeSelf;

@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Pathfinding;
 
-
 public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 {
+    [SerializeField] BoxCollider2D _boxCollider2D;
+
     [SerializeField] private AIDestinationSetter _aIDestinationSetter;
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -69,6 +70,10 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
             _spriteRenderer.color = Color.white;
 
             _builder = true;
+
+            _boxCollider2D.enabled = false;
+
+            _boxCollider2D.enabled = true;
         }
     }
 

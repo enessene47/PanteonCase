@@ -6,13 +6,29 @@ using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [Header("Panel")]
+    [SerializeField] private GameObject _building;
     [SerializeField] private GameObject _barrackPanel;
     [SerializeField] private GameObject _powerPlatePanel;
     [SerializeField] private GameObject _soldierPanel;
+    [SerializeField] private GameObject _tapToStart;
 
+    [Header("Image")]
     [SerializeField] private Image _soldierImage;
-    [SerializeField] private TextMeshProUGUI _soldierName;
-    [SerializeField] private TextMeshProUGUI _soldierSpeed;
+
+    [Header("TextMeshProGUI")]
+    [SerializeField] private TextMeshProUGUI _soldierNameText;
+    [SerializeField] private TextMeshProUGUI _soldierSpeedText;
+    [SerializeField] private TextMeshProUGUI _totalEnergyText;
+
+    private void Start() => EventManager.Instance.StartEvent.AddListener(() => 
+    {
+        DataManager.Instance.Energy = 0;
+
+        _building.SetActive(true);
+
+        _tapToStart.SetActive(false);
+    });
 
     public void PanelActive(bool barrack = false, bool powerPlate = false, bool soldier = false)
     {
@@ -25,8 +41,8 @@ public class UIManager : MonoSingleton<UIManager>
     {
         _soldierImage.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(sprite);
 
-        _soldierName.text = sprite;
-        _soldierSpeed.text = "Speed: " + speed;
+        _soldierNameText.text = sprite;
+        _soldierSpeedText.text = "Speed: " + speed;
     }
 
     public void PanelNotActive()
@@ -35,4 +51,6 @@ public class UIManager : MonoSingleton<UIManager>
         _powerPlatePanel.SetActive(false);
         _soldierPanel.SetActive(false);
     }
+
+    public void EnergyTextUpdate(int energy) => _totalEnergyText.text = "Total Energy: " + energy;
 }

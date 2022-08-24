@@ -8,7 +8,7 @@ public class PowerPlateManager : MonoSingleton<PowerPlateManager>
 
     public void AddPowerPlate(PowerPlateScript pPS) => _powerPlateScripts.Add(pPS);
 
-    public void Start() => StartCoroutine(EnergyProduction());
+    public void Start() => EventManager.Instance.StartEvent.AddListener(() => StartCoroutine(EnergyProduction()));
 
     private IEnumerator EnergyProduction()
     {
