@@ -8,6 +8,10 @@ public class TileScript : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
 
+    [SerializeField] BoxCollider2D boxColl;
+
+    private bool _build;
+
     public int x, y;
 
     public void Init(bool isOffset) => _renderer.color = isOffset ? _offsetColor : _baseColor;

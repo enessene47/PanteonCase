@@ -6,6 +6,8 @@ public interface IInformation
 {
     void Information();
 
+    void Build(Vector2 pos);
+
     Transform transform { get; }
 
     MenuItemScript.Type GetType { get; }

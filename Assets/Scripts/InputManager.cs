@@ -32,7 +32,7 @@ public class InputManager : MonoSingleton<InputManager>
             Transform trs = GridManager.Instance.CalculateDistance(_builder);
 
             if (trs != null)
-                _builder.transform.position = trs.position;
+                _builder.Build(trs.position);
             else
                 PoolManager.Instance.SetBuilder(_builder);
 
