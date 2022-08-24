@@ -1,22 +1,28 @@
-using Pathfinding;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Pathfinding;
+
 
 public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 {
     [SerializeField] private AIDestinationSetter _aIDestinationSetter;
 
-    private MenuItemScript.Type _type = MenuItemScript.Type.Soldier;
-
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private AIPath _aIPath;
+
+    private MenuItemScript.Type _type = MenuItemScript.Type.Soldier;
 
     private bool _isActive;
 
     private bool _builder = true;
 
-    public void SetView(int index = 0) => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "Soldier1" : "Soldier2");
+    public void SetView(int index = 0)
+    {
+        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "Soldier1" : "Soldier2");
+
+        _aIPath.maxSpeed = index == 0 ? 3 : 5;
+    }
 
     public void Information()
     {

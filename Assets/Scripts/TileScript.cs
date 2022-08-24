@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,8 +5,6 @@ public class TileScript : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
-
-    private bool _build;
 
     public int x, y;
 

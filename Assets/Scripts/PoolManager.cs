@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : MonoSingleton<PoolManager>
@@ -10,21 +9,21 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     [SerializeField] private int _poolSizeBarrackPowerPlant;
 
-    private Queue<BarrackScript> _pooledBarrack;
+    private Queue<IInformation> _pooledBarrack;
 
-    private Queue<PowerPlateScript> _pooledPowerPlant;
+    private Queue<IInformation> _pooledPowerPlant;
 
-    private Queue<SoldierScript> _pooledSoldier;
+    private Queue<IInformation> _pooledSoldier;
 
     private void Awake() => CreateBarrack();
 
     private void CreateBarrack()
     {
-        _pooledBarrack = new Queue<BarrackScript>();
+        _pooledBarrack = new Queue<IInformation>();
 
-        _pooledPowerPlant = new Queue<PowerPlateScript>();
+        _pooledPowerPlant = new Queue<IInformation>();
 
-        _pooledSoldier = new Queue<SoldierScript>();
+        _pooledSoldier = new Queue<IInformation>();
 
         for (int i = 0; i < _poolSizeBarrackPowerPlant; i++)
         {
@@ -70,32 +69,15 @@ public class PoolManager : MonoSingleton<PoolManager>
         return obj;
     }
 
-    public void SetBuilder<T>(T t)
+    public void SetBuilder(IInformation obj)
     {
-        if (t is BarrackScript)
+        switch(obj.GetType)
         {
-            var obj = (BarrackScript)Convert.ChangeType(t, typeof(BarrackScript));
-
-            BackPool(obj.gameObject, _pooledBarrack, obj);
+            case MenuItemScript.Type.Barrack: _pooledBarrack.Enqueue(obj); break;
+            case MenuItemScript.Type.PowerPlate: _pooledPowerPlant.Enqueue(obj); break;
+            case MenuItemScript.Type.Soldier: _pooledSoldier.Enqueue(obj); break;
         }
-        else if (t is PowerPlateScript)
-        {
-            var obj = (PowerPlateScript)Convert.ChangeType(t, typeof(PowerPlateScript));
 
-            BackPool(obj.gameObject, _pooledPowerPlant, obj);
-        }
-        else if(t is SoldierScript)
-        {
-            var obj = (SoldierScript)Convert.ChangeType(t, typeof(SoldierScript));
-
-            BackPool(obj.gameObject, _pooledSoldier, obj);
-        }
-    }
-
-    private void BackPool<T>(GameObject obj, Queue<T> queue, T t)
-    {
-        queue.Enqueue(t);
-
-        obj.SetActive(false);
+        obj.gameObject.SetActive(false);
     }
 }

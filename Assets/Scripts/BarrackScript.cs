@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.Barrack;
+
+    [SerializeField] private Rigidbody2D _physics;
 
     [SerializeField] private BoxCollider2D _boxCollider2D;
 
@@ -19,19 +19,15 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private void Start() => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("Barrack");
 
-    public void Information()
-    {
-        UIManager.Instance.PanelActive(true);
-    }
+    public void Information() => UIManager.Instance.PanelActive(true);
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
             Information();
     }
-    MenuItemScript.Type IInformation.GetType => _type;
 
-    public Transform GetTransform => transform;
+    MenuItemScript.Type IInformation.GetType => _type;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -67,6 +63,8 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
         transform.position = vec;
 
         _boxCollider2D.isTrigger = false;
+
+        _physics.constraints = RigidbodyConstraints2D.FreezeAll;
 
         _isActive = true;
 

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aIDestinationSetter: {fileID: 8639756005854014828}
   _spriteRenderer: {fileID: 1878036478894150910}
-  _sprites: []
+  _aIPath: {fileID: 9010312014025970041}
 --- !u!50 &-4288368315441009846
 Rigidbody2D:
   serializedVersion: 4

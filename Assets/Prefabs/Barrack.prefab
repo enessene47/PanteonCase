@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.7361927, y: 5.12}
+  m_Size: {x: 6.8834314, y: 6.144}
   m_EdgeRadius: 0
 --- !u!114 &4411155898951699590
 MonoBehaviour:
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b66dc7e50f7c44e80f746070de13a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _physics: {fileID: -5464840148641800515}
   _boxCollider2D: {fileID: -3256370387079661761}
   _spriteRenderer: {fileID: 1937962116087010940}
   _floor: {fileID: 6188951971421194401}

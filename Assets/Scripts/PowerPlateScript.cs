@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.PowerPlate;
+
+    [SerializeField] private Rigidbody2D _physics;
 
     [SerializeField] private BoxCollider2D _boxCollider2D;
 
@@ -26,10 +26,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
         _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlate");
     }
 
-    public void Information()
-    {
-        UIManager.Instance.PanelActive(false);
-    }
+    public void Information() => UIManager.Instance.PanelActive(false);
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -79,6 +76,8 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
         _isActive = true;
 
         _floor.SetActive(true);
+
+        _physics.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Production()
