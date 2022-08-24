@@ -8,6 +8,8 @@ public interface IInformation
 
     void Build(Vector2 pos);
 
+    GameObject gameObject { get; }
+
     Transform transform { get; }
 
     MenuItemScript.Type GetType { get; }

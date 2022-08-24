@@ -12,8 +12,6 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
-    [SerializeField] private Sprite[] _sprites;
-
     private bool _isActive;
 
     private bool _builder = true;

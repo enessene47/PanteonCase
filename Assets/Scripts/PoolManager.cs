@@ -43,39 +43,31 @@ public class PoolManager : MonoSingleton<PoolManager>
         queue.Enqueue(obj.GetComponent<T>());
     }
 
-    private void BackPool<T>(GameObject obj, Queue<T> queue, T t)
+    public IInformation GetBuilder(MenuItemScript.Type type, int soldierType = -1)
     {
-        queue.Enqueue(t);
+        IInformation obj = null;
 
-        obj.SetActive(false);
-    }
+        switch(type)
+        {
+            case MenuItemScript.Type.Barrack:
+                if (_pooledBarrack.Count == 0)
+                    InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+                obj = _pooledBarrack.Dequeue(); break;
+            case MenuItemScript.Type.PowerPlate:
+                if (_pooledPowerPlant.Count == 0)
+                    InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+                obj = _pooledPowerPlant.Dequeue(); break;
+            case MenuItemScript.Type.Soldier:
+                if (_pooledSoldier.Count == 0)
+                    InstantiateObject(_objectSoldierPlant, _pooledSoldier);
+                obj = _pooledSoldier.Dequeue();
+                ((SoldierScript)obj).SetView(soldierType);
+                break;
+        }
 
-    public BarrackScript GetBarrackObject(Vector2 builderPos)
-    {
-        if (_pooledBarrack.Count == 0)
-            InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+        obj.gameObject.SetActive(true);
 
-        BarrackScript barrackScript = _pooledBarrack.Dequeue();
-
-        barrackScript.gameObject.SetActive(true);
-
-        barrackScript.GetTransform.position = builderPos;
-
-        return barrackScript; 
-    }
-
-    public PowerPlateScript GetPowerPlateObject(Vector2 builderPos)
-    {
-        if (_pooledPowerPlant.Count == 0)
-            InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
-
-        PowerPlateScript powerPlateScript = _pooledPowerPlant.Dequeue();
-
-        powerPlateScript.gameObject.SetActive(true);
-
-        powerPlateScript.GetTransform.position = builderPos;
-
-        return powerPlateScript;
+        return obj;
     }
 
     public void SetBuilder<T>(T t)
@@ -98,22 +90,12 @@ public class PoolManager : MonoSingleton<PoolManager>
 
             BackPool(obj.gameObject, _pooledSoldier, obj);
         }
-
     }
 
-    public SoldierScript GetSoldierObject(Vector2 builderPos, int soldierType)
+    private void BackPool<T>(GameObject obj, Queue<T> queue, T t)
     {
-        if (_pooledSoldier.Count == 0)
-            InstantiateObject(_objectSoldierPlant, _pooledSoldier);
+        queue.Enqueue(t);
 
-        SoldierScript soldier = _pooledSoldier.Dequeue();
-
-        soldier.SetView(soldierType);
-
-        soldier.gameObject.SetActive(true);
-
-        soldier.GetTransform.position = builderPos;
-
-        return soldier;
+        obj.SetActive(false);
     }
 }

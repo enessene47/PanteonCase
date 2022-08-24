@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 74925190}
   - component: {fileID: 74925192}
   - component: {fileID: 74925193}
+  - component: {fileID: 74925194}
   m_Layer: 5
   m_Name: PowerPlant
   m_TagString: Untagged
@@ -242,8 +243,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  _soldierType: 0
-  image: {fileID: 74925190}
+  _soldierType: -1
+--- !u!114 &74925194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74925188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 74925190}
+  _spriteName: PowerPlate
 --- !u!1 &91949938
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +271,7 @@ GameObject:
   - component: {fileID: 91949940}
   - component: {fileID: 91949943}
   - component: {fileID: 91949942}
+  - component: {fileID: 91949944}
   m_Layer: 5
   m_Name: Barrack
   m_TagString: Untagged
@@ -334,8 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  _soldierType: 0
-  image: {fileID: 91949940}
+  _soldierType: -1
 --- !u!114 &91949943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +379,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &91949944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91949938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 91949940}
+  _spriteName: Barrack
 --- !u!1 &199746334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   _soldierType: 1
-  image: {fileID: 1415608640}
 --- !u!114 &1415608639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1824,7 +1851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   _soldierType: 0
-  image: {fileID: 1507140050}
 --- !u!114 &1507140049
 MonoBehaviour:
   m_ObjectHideFlags: 0
