@@ -81,7 +81,9 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: 0f580477ddc6d4d469976b88022a6c4c, type: 3}
     - {fileID: 2800000, guid: dbec6fe3bfee3d146bc21fa60d36c905, type: 3}
-    totalSpriteSurfaceArea: 496128
+    - {fileID: 2800000, guid: e4abcc977820e6b4db111dc25d4c323c, type: 3}
+    - {fileID: 2800000, guid: 00b4499a4f8d26e4ea7961e2f9c80067, type: 3}
+    totalSpriteSurfaceArea: 618240
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -89,9 +91,13 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: dbec6fe3bfee3d146bc21fa60d36c905, type: 3}
   - {fileID: 21300000, guid: 0f580477ddc6d4d469976b88022a6c4c, type: 3}
+  - {fileID: 21300000, guid: e4abcc977820e6b4db111dc25d4c323c, type: 3}
+  - {fileID: 21300000, guid: 00b4499a4f8d26e4ea7961e2f9c80067, type: 3}
   m_PackedSpriteNamesToIndex:
   - PowerPlank
   - Barrack
+  - soldier
+  - soldier2
   m_RenderDataMap: {}
   m_Tag: Buildings
   m_IsVariant: 0

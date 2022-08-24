@@ -17,6 +17,8 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private bool _builder = true;
 
+    private void Start() => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("Barrack");
+
     public void Information()
     {
         Debug.Log(gameObject.name);

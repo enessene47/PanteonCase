@@ -8,6 +8,8 @@ public class MenuItemScript : MonoBehaviour
 
     [SerializeField] Type type;
 
+    [SerializeField] private bool _soldierType;
+
     public void OnDown()
     {
         if (type == Type.Barrack)
@@ -15,6 +17,6 @@ public class MenuItemScript : MonoBehaviour
         else if(type == Type.PowerPlate)
             InputManager.Instance.SetBuilder(PoolManager.Instance.GetPowerPlateObject(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
         else if(type == Type.Soldier)
-            InputManager.Instance.SetBuilder(PoolManager.Instance.GetSoldierObject(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+            InputManager.Instance.SetBuilder(PoolManager.Instance.GetSoldierObject(Camera.main.ScreenToWorldPoint(Input.mousePosition), _soldierType ? 1 : 0));
     }
 }

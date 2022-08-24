@@ -13,9 +13,18 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
 
     [SerializeField] public GameObject _floor;
 
+    [SerializeField] GameObject energyAnim;
+
     private bool _isActive;
 
     private bool _builder = true;
+
+    private void Start()
+    {
+        PowerPlateManager.Instance.AddPowerPlate(this);
+
+        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlank");
+    }
 
     public void Information()
     {
@@ -71,4 +80,12 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
 
         _floor.SetActive(true);
     }
+
+    public void Production()
+    {
+        energyAnim.SetActive(false);
+        energyAnim.SetActive(true);
+    }
+
+    public bool IsActive => gameObject.activeSelf;
 }

@@ -10,18 +10,18 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private MenuItemScript.Type _type = MenuItemScript.Type.Soldier;
 
-    [SerializeField] private BoxCollider2D _boxCollider2D;
-
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private Sprite[] _sprites;
 
     private bool _isActive;
 
     private bool _builder = true;
 
+    public void SetView(int index = 0) => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "soldier" : "soldier2");
+
     public void Information()
     {
-        Debug.Log(gameObject.name);
-
         InputManager.Instance.Soldier = this;
     }
 
@@ -69,8 +69,6 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
         }
 
         transform.position = vec;
-
-        //_boxCollider2D.isTrigger = false;
 
         _isActive = true;
     }

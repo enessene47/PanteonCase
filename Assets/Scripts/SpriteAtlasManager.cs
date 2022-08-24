@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class SpriteAtlasManager : MonoBehaviour
+public class SpriteAtlasManager : MonoSingleton<SpriteAtlasManager>
 {
     [SerializeField] private SpriteAtlas _spriteAtlas;
 

@@ -101,12 +101,14 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     }
 
-    public SoldierScript GetSoldierObject(Vector2 builderPos)
+    public SoldierScript GetSoldierObject(Vector2 builderPos, int soldierType)
     {
         if (_pooledSoldier.Count == 0)
             InstantiateObject(_objectSoldierPlant, _pooledSoldier);
 
         SoldierScript soldier = _pooledSoldier.Dequeue();
+
+        soldier.SetView(soldierType);
 
         soldier.gameObject.SetActive(true);
 
