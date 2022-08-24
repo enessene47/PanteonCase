@@ -17,7 +17,7 @@ public class TileScript : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
-            InputManager.Instance.SoldierSetTarget(transform);
+            BuilderManager.Instance.SoldierSetTarget(transform);
         else if (eventData.button == PointerEventData.InputButton.Left)
             UIManager.Instance.PanelNotActive();
     }

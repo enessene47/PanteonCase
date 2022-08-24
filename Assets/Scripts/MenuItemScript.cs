@@ -13,6 +13,6 @@ public class MenuItemScript : MonoBehaviour
 
     public void OnDown()
     {
-        InputManager.Instance.SetBuilder(PoolManager.Instance.GetBuilder(type, _soldierType));
+        BuilderManager.Instance.SetBuilder(PoolManager.Instance.GetBuilder(type, _soldierType));
     }
 }

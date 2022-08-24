@@ -22,7 +22,7 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         UIManager.Instance.PanelNotActive();
 
-        InputManager.Instance.Soldier = this;
+        BuilderManager.Instance.Soldier = this;
     }
 
     public void OnPointerClick(PointerEventData eventData)
