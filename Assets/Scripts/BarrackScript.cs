@@ -21,7 +21,7 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     public void Information()
     {
-        Debug.Log(gameObject.name);
+        UIManager.Instance.PanelActive(true);
     }
 
     public void OnPointerClick(PointerEventData eventData)

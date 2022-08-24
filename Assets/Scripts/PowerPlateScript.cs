@@ -23,12 +23,12 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         PowerPlateManager.Instance.AddPowerPlate(this);
 
-        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlank");
+        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlate");
     }
 
     public void Information()
     {
-        Debug.Log(gameObject.name);
+        UIManager.Instance.PanelActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)

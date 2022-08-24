@@ -94,10 +94,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e4abcc977820e6b4db111dc25d4c323c, type: 3}
   - {fileID: 21300000, guid: 00b4499a4f8d26e4ea7961e2f9c80067, type: 3}
   m_PackedSpriteNamesToIndex:
-  - PowerPlank
+  - PowerPlate
   - Barrack
-  - soldier
-  - soldier2
+  - Soldier1
+  - Soldier2
   m_RenderDataMap: {}
   m_Tag: Buildings
   m_IsVariant: 0
