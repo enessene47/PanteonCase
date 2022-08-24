@@ -19,7 +19,7 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private void Start() => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("Barrack");
 
-    public void Information() => UIManager.Instance.PanelActive(true);
+    public void Information() => UIManager.Instance.PanelActive(barrack: true);
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -17,8 +17,12 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private bool _builder = true;
 
+    private bool _soldier1;
+
     public void SetView(int index = 0)
     {
+        _soldier1 = index == 0 ? true : false;
+
         _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "Soldier1" : "Soldier2");
 
         _aIPath.maxSpeed = index == 0 ? 3 : 5;
@@ -26,7 +30,12 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     public void Information()
     {
-        UIManager.Instance.PanelNotActive();
+        UIManager.Instance.PanelActive(soldier: true);
+
+        if (_soldier1)
+            UIManager.Instance.SoldierPanelOption();
+        else
+            UIManager.Instance.SoldierPanelOption(5, "Soldier2");
 
         BuilderManager.Instance.Soldier = this;
     }

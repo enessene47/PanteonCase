@@ -26,7 +26,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
         _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlate");
     }
 
-    public void Information() => UIManager.Instance.PanelActive(false);
+    public void Information() => UIManager.Instance.PanelActive(powerPlate: true);
 
     public void OnPointerClick(PointerEventData eventData)
     {
