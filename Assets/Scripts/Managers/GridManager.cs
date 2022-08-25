@@ -20,7 +20,9 @@ public class GridManager : MonoSingleton<GridManager>
         for(int i = 0; i < _width; i++)
             for(int j = 0; j < _height; j++)
             {
-                var tile = Instantiate(_tilePrefab, new Vector3(i - x + .5f, j - y + .5f), Quaternion.identity, transform);
+                var tile = Instantiate(_tilePrefab, new Vector3(i - x + .5f, j - y + .5f), Quaternion.identity);
+
+                tile.gameObject.hideFlags = HideFlags.HideInHierarchy;
 
                 tile.name = $"Tile {i} {j}";
 

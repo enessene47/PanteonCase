@@ -37,6 +37,8 @@ public class PoolManager : MonoSingleton<PoolManager>
     {
         GameObject obj = Instantiate(prefab);
 
+        obj.hideFlags = HideFlags.HideInHierarchy;
+
         obj.SetActive(false);
 
         queue.Enqueue(obj.GetComponent<T>());
