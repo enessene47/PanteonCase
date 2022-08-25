@@ -28,7 +28,9 @@ public class PoolManager : MonoSingleton<PoolManager>
         for (int i = 0; i < _poolSizeBarrackPowerPlant; i++)
         {
             InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+
             InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+
             InstantiateObject(_objectSoldierPlant, _pooledSoldier);
         }
     }
