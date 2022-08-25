@@ -14,7 +14,7 @@ public class InputManager : MonoSingleton<InputManager>
         onTap += () =>
         {
             if(BuilderManager.Instance.Builder != null)
-                BuilderManager.Instance.Builder.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                BuilderManager.Instance.Builder.transform.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
         };
 
         tapUp += () =>
