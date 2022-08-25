@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class BuilderManager : MonoSingleton<BuilderManager>
 {
-    private IInformation _builder;
+    [SerializeField] AstarPath astarPath;
 
-    public void SetBuilder(IInformation builder) => _builder = builder;
+    private IBuildable _builder;
 
-    public IInformation Builder
+    public void SetBuilder(IBuildable builder) => _builder = builder;
+
+    public IBuildable Builder
     {
         get => _builder;
         set => _builder = value;
     }
-
-    [SerializeField] AstarPath astarPath;
 
     private SoldierScript _soldier;
 

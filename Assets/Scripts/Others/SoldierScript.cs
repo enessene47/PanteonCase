@@ -2,13 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Pathfinding;
 
-public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
+public class SoldierScript : CustomManager, IBuildable, IPointerClickHandler
 {
-    [SerializeField] BoxCollider2D _boxCollider2D;
-
     [SerializeField] private AIDestinationSetter _aIDestinationSetter;
-
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [SerializeField] private AIPath _aIPath;
 
@@ -24,7 +20,7 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         _soldier1 = index == 0 ? true : false;
 
-        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "Soldier1" : "Soldier2");
+        SpriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(index == 0 ? "Soldier1" : "Soldier2");
 
         _aIPath.maxSpeed = index == 0 ? 3 : 5;
     }
@@ -49,7 +45,7 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     public Transform GetTransform => transform;
 
-    MenuItemScript.Type IInformation.GetType => _type;
+    MenuItemScript.Type IBuildable.GetType => _type;
 
     public void SetTarget(Transform trs) => _aIDestinationSetter.target = trs;
 
@@ -57,7 +53,7 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.red;
+            SpriteRenderer.color = Color.red;
 
             _builder = false;
         }
@@ -67,13 +63,13 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             _builder = true;
 
-            _boxCollider2D.enabled = false;
+            BoxCollider2D.enabled = false;
 
-            _boxCollider2D.enabled = true;
+            BoxCollider2D.enabled = true;
         }
     }
 
@@ -81,7 +77,7 @@ public class SoldierScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         if (!_builder)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             PoolManager.Instance.SetBuilder(this);
 

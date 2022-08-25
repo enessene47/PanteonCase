@@ -9,21 +9,21 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     [SerializeField] private int _poolSizeBarrackPowerPlant;
 
-    private Queue<IInformation> _pooledBarrack;
+    private Queue<IBuildable> _pooledBarrack;
 
-    private Queue<IInformation> _pooledPowerPlant;
+    private Queue<IBuildable> _pooledPowerPlant;
 
-    private Queue<IInformation> _pooledSoldier;
+    private Queue<IBuildable> _pooledSoldier;
 
     private void Awake() => CreateBarrack();
 
     private void CreateBarrack()
     {
-        _pooledBarrack = new Queue<IInformation>();
+        _pooledBarrack = new Queue<IBuildable>();
 
-        _pooledPowerPlant = new Queue<IInformation>();
+        _pooledPowerPlant = new Queue<IBuildable>();
 
-        _pooledSoldier = new Queue<IInformation>();
+        _pooledSoldier = new Queue<IBuildable>();
 
         for (int i = 0; i < _poolSizeBarrackPowerPlant; i++)
         {
@@ -42,9 +42,9 @@ public class PoolManager : MonoSingleton<PoolManager>
         queue.Enqueue(obj.GetComponent<T>());
     }
 
-    public IInformation GetBuilder(MenuItemScript.Type type, int soldierType = -1)
+    public IBuildable GetBuilder(MenuItemScript.Type type, int soldierType = -1)
     {
-        IInformation obj = null;
+        IBuildable obj = null;
 
         switch(type)
         {
@@ -69,15 +69,15 @@ public class PoolManager : MonoSingleton<PoolManager>
         return obj;
     }
 
-    public void SetBuilder(IInformation obj)
+    public void SetBuilder(IBuildable buildable)
     {
-        switch(obj.GetType)
+        switch(buildable.GetType)
         {
-            case MenuItemScript.Type.Barrack: _pooledBarrack.Enqueue(obj); break;
-            case MenuItemScript.Type.PowerPlate: _pooledPowerPlant.Enqueue(obj); break;
-            case MenuItemScript.Type.Soldier: _pooledSoldier.Enqueue(obj); break;
+            case MenuItemScript.Type.Barrack: _pooledBarrack.Enqueue(buildable); break;
+            case MenuItemScript.Type.PowerPlate: _pooledPowerPlant.Enqueue(buildable); break;
+            case MenuItemScript.Type.Soldier: _pooledSoldier.Enqueue(buildable); break;
         }
 
-        obj.gameObject.SetActive(false);
+        buildable.gameObject.SetActive(false);
     }
 }

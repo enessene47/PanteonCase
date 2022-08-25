@@ -334,7 +334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 74925190}
   _spriteName: PowerPlate
 --- !u!1 &91949938
 GameObject:
@@ -469,7 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 91949940}
   _spriteName: Barrack
 --- !u!1 &199746334
 GameObject:
@@ -693,7 +691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 432437812}
   _spriteName: Barrack
 --- !u!1 &443829973
 GameObject:
@@ -1549,7 +1546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 863091752}
   _spriteName: PowerPlate
 --- !u!1 &897093645
 GameObject:
@@ -1908,7 +1904,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1099701773}
-  - component: {fileID: 1099701775}
   - component: {fileID: 1099701772}
   - component: {fileID: 1099701774}
   - component: {fileID: 1099701776}
@@ -1966,18 +1961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteAtlas: {fileID: 4343727234628468602, guid: 4b12b54bed1fc7047adc774baa1cd5dd, type: 2}
---- !u!114 &1099701775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099701771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0065f2df8209bfa49a0445c28c55ebcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1099701776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2191,7 +2174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 1415608640}
   _spriteName: Soldier2
 --- !u!1 &1479166878
 GameObject:
@@ -2548,7 +2530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a305822adc2f4fb7ae7e4ab5df91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 1507140050}
   _spriteName: Soldier1
 --- !u!1 &1656165529
 GameObject:

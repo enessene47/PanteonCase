@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IInformation
+public interface IBuildable
 {
     void Information();
 

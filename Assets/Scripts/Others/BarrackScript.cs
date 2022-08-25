@@ -1,15 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
+public class BarrackScript : CustomManager, IBuildable, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.Barrack;
-
-    [SerializeField] private Rigidbody2D _physics;
-
-    [SerializeField] private BoxCollider2D _boxCollider2D;
-
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [SerializeField] public GameObject _floor;
 
@@ -17,7 +11,7 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
     private bool _builder = true;
 
-    private void Start() => _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("Barrack");
+    private void Start() => SpriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("Barrack");
 
     public void Information() => UIManager.Instance.PanelActive(barrack: true);
 
@@ -27,13 +21,13 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
             Information();
     }
 
-    MenuItemScript.Type IInformation.GetType => _type;
+    MenuItemScript.Type IBuildable.GetType => _type;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.red;
+            SpriteRenderer.color = Color.red;
 
             _builder = false;
         }
@@ -43,13 +37,13 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             _builder = true;
 
-            _boxCollider2D.enabled = false;
+            BoxCollider2D.enabled = false;
 
-            _boxCollider2D.enabled = true;
+            BoxCollider2D.enabled = true;
         }
     }
 
@@ -57,7 +51,7 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
     {
         if (!_builder)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             PoolManager.Instance.SetBuilder(this);
 
@@ -66,9 +60,9 @@ public class BarrackScript : MonoBehaviour, IInformation, IPointerClickHandler
 
         transform.position = vec;
 
-        _boxCollider2D.isTrigger = false;
+        BoxCollider2D.isTrigger = false;
 
-        _physics.constraints = RigidbodyConstraints2D.FreezeAll;
+        Rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
 
         _isActive = true;
 

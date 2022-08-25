@@ -35,7 +35,7 @@ public class GridManager : MonoSingleton<GridManager>
             }
     }
 
-    public Transform CalculateDistance(IInformation builder)
+    public Transform CalculateDistance(IBuildable buildable)
     {
         float dist = 1f;
 
@@ -45,11 +45,11 @@ public class GridManager : MonoSingleton<GridManager>
         {
             for(int j = 0; j < _height; j++)
             {
-                float nowDist = (((Vector2)builder.transform.position) - _tileScripts[i, j].GetPos).magnitude;
+                float nowDist = (((Vector2) buildable.transform.position) - _tileScripts[i, j].GetPos).magnitude;
 
                 if (nowDist <= dist)
                 {
-                    if (builder.GetType == MenuItemScript.Type.Barrack)
+                    if (buildable.GetType == MenuItemScript.Type.Barrack)
                     {
                         if (i < 2)
                             i = 2;
@@ -60,7 +60,7 @@ public class GridManager : MonoSingleton<GridManager>
                         if (j > _height - 3)
                             j = _height - 3;
                     }
-                    else if (builder.GetType == MenuItemScript.Type.PowerPlate)
+                    else if (buildable.GetType == MenuItemScript.Type.PowerPlate)
                     {
                         if (i < 1)
                             i = 1;

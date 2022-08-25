@@ -1,15 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandler
+public class PowerPlateScript : CustomManager, IBuildable, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.PowerPlate;
-
-    [SerializeField] private Rigidbody2D _physics;
-
-    [SerializeField] private BoxCollider2D _boxCollider2D;
-
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [SerializeField] public GameObject _floor;
 
@@ -23,7 +17,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         PowerPlateManager.Instance.AddPowerPlate(this);
 
-        _spriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlate");
+        SpriteRenderer.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas("PowerPlate");
     }
 
     public void Information() => UIManager.Instance.PanelActive(powerPlate: true);
@@ -34,7 +28,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
             Information();
     }
 
-    MenuItemScript.Type IInformation.GetType => _type;
+    MenuItemScript.Type IBuildable.GetType => _type;
 
     public Transform GetTransform => transform;
 
@@ -42,7 +36,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.red;
+            SpriteRenderer.color = Color.red;
 
             _builder = false;
         }
@@ -52,13 +46,13 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         if (collision.CompareTag("Builder") && !_isActive)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             _builder = true;
 
-            _boxCollider2D.enabled = false;
+            BoxCollider2D.enabled = false;
 
-            _boxCollider2D.enabled = true;
+            BoxCollider2D.enabled = true;
         }
     }
 
@@ -66,7 +60,7 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
     {
         if (!_builder)
         {
-            _spriteRenderer.color = Color.white;
+            SpriteRenderer.color = Color.white;
 
             PoolManager.Instance.SetBuilder(this);
 
@@ -75,13 +69,13 @@ public class PowerPlateScript : MonoBehaviour, IInformation, IPointerClickHandle
 
         transform.position = vec;
 
-        _boxCollider2D.isTrigger = false;
+        BoxCollider2D.isTrigger = false;
 
         _isActive = true;
 
         _floor.SetActive(true);
 
-        _physics.constraints = RigidbodyConstraints2D.FreezeAll;
+        Rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void Production()

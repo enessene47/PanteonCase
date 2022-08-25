@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class CustomManager : MonoBehaviour
 {
@@ -28,6 +29,19 @@ public abstract class CustomManager : MonoBehaviour
         }
     }
 
+    private Rigidbody2D physics2D;
+
+    public Rigidbody2D Rigidbody2D
+    {
+        get
+        {
+            if (physics2D == null)
+                physics2D = GetComponent<Rigidbody2D>();
+
+            return physics2D;
+        }
+    }
+
     private Collider _coll;
 
     public Collider Collider
@@ -41,6 +55,19 @@ public abstract class CustomManager : MonoBehaviour
         }
     }
 
+    private Collider2D _coll2D;
+
+    public Collider2D Collider2D
+    {
+        get
+        {
+            if (_coll2D == null)
+                _coll2D = GetComponent<Collider2D>();
+
+            return _coll2D;
+        }
+    }
+
     private BoxCollider _boxCollider;
 
     public BoxCollider BoxCollider
@@ -51,6 +78,20 @@ public abstract class CustomManager : MonoBehaviour
                 _boxCollider = GetComponent<BoxCollider>();
 
             return _boxCollider;
+        }
+    }
+
+
+    private BoxCollider2D _boxCollider2D;
+
+    public BoxCollider2D BoxCollider2D
+    {
+        get
+        {
+            if (_boxCollider2D == null)
+                _boxCollider2D = GetComponent<BoxCollider2D>();
+
+            return _boxCollider2D;
         }
     }
 
@@ -103,6 +144,19 @@ public abstract class CustomManager : MonoBehaviour
                 _rend = GetComponent<Renderer>();
 
             return _rend;
+        }
+    }
+
+    private SpriteRenderer _spriteRenderer;
+
+    public SpriteRenderer SpriteRenderer
+    {
+        get
+        {
+            if (_spriteRenderer == null)
+                _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            return _spriteRenderer;
         }
     }
 
@@ -168,6 +222,19 @@ public abstract class CustomManager : MonoBehaviour
                 _trailRenderer = GetComponent<TrailRenderer>();
 
             return _trailRenderer;
+        }
+    }
+
+    private Image _image;
+
+    public Image Image
+    {
+        get
+        {
+            if (_image == null)
+                _image = GetComponent<Image>();
+
+            return _image;
         }
     }
 }
