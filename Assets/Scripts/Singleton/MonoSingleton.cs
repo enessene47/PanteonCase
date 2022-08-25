@@ -2,16 +2,20 @@
 
 public class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-    private static volatile T instance = null;
+    private static volatile T _instance = null;
+
+    private static readonly object _lockOnject = new object();
 
     public static T Instance
     {
         get
         {
-            if (instance == null)
-                instance = FindObjectOfType(typeof(T)) as T;
+            if (_instance == null)
+                lock (_lockOnject)
+                    if (_instance == null)
+                        _instance = FindObjectOfType(typeof(T)) as T;
 
-            return instance;
+            return _instance;
         }
     }
 }
