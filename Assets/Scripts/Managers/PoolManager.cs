@@ -62,8 +62,7 @@ public class PoolManager : MonoSingleton<PoolManager>
                 if (_pooledSoldier.Count == 0)
                     InstantiateObject(_objectSoldierPlant, _pooledSoldier);
                 obj = _pooledSoldier.Dequeue();
-                ((SoldierScript)obj).SetView(soldierType);
-                break;
+                ((SoldierScript)obj).SetView(soldierType); break;
         }
 
         obj.gameObject.SetActive(true);

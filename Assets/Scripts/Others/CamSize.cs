@@ -8,6 +8,7 @@ public class CamSize : MonoBehaviour
         float orthographicStartSize = 17f;
 
         float inverseAspectRatio = 1 / aspectRatioDesign;
+
         float currentAspectRatio = (float) Screen.width / (float) Screen.height;
 
         if (currentAspectRatio > aspectRatioDesign)

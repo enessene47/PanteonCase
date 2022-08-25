@@ -16,29 +16,29 @@ public abstract class CustomManager : MonoBehaviour
         }
     }
 
-    private Rigidbody physics;
+    private Rigidbody _physics;
 
     public Rigidbody Rigidbody
     {
         get
         {
-            if (physics == null)
-                physics = GetComponent<Rigidbody>();
+            if (_physics == null)
+                _physics = GetComponent<Rigidbody>();
 
-            return physics;
+            return _physics;
         }
     }
 
-    private Rigidbody2D physics2D;
+    private Rigidbody2D _physics2D;
 
     public Rigidbody2D Rigidbody2D
     {
         get
         {
-            if (physics2D == null)
-                physics2D = GetComponent<Rigidbody2D>();
+            if (_physics2D == null)
+                _physics2D = GetComponent<Rigidbody2D>();
 
-            return physics2D;
+            return _physics2D;
         }
     }
 

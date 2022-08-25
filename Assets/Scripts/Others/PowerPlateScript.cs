@@ -81,6 +81,7 @@ public class PowerPlateScript : CustomManager, IBuildable, IPointerClickHandler
     public void Production()
     {
         energyAnim.SetActive(false);
+
         energyAnim.SetActive(true);
 
         DataManager.Instance.Energy = 1;

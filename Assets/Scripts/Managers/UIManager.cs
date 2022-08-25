@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -33,7 +31,9 @@ public class UIManager : MonoSingleton<UIManager>
     public void PanelActive(bool barrack = false, bool powerPlate = false, bool soldier = false)
     {
         _barrackPanel.SetActive(barrack);
+
         _powerPlatePanel.SetActive(powerPlate);
+
         _soldierPanel.SetActive(soldier);
     }
 
@@ -42,13 +42,16 @@ public class UIManager : MonoSingleton<UIManager>
         _soldierImage.sprite = SpriteAtlasManager.Instance.GetSpriteAtlas(sprite);
 
         _soldierNameText.text = sprite;
+
         _soldierSpeedText.text = "Speed: " + speed;
     }
 
     public void PanelNotActive()
     {
         _barrackPanel.SetActive(false);
+
         _powerPlatePanel.SetActive(false);
+
         _soldierPanel.SetActive(false);
     }
 
