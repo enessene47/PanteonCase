@@ -5,7 +5,7 @@ public class BarrackScript : CustomManager, IBuildable, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.Barrack;
 
-    [SerializeField] public GameObject _floor;
+    [SerializeField] private GameObject _floor;
 
     private bool _isActive;
 

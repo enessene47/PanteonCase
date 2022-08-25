@@ -5,7 +5,7 @@ public class PowerPlateScript : CustomManager, IBuildable, IPointerClickHandler
 {
     private MenuItemScript.Type _type = MenuItemScript.Type.PowerPlate;
 
-    [SerializeField] public GameObject _floor;
+    [SerializeField] private GameObject _floor;
 
     [SerializeField] GameObject energyAnim;
 
