@@ -5,6 +5,7 @@ public class CamSize : MonoBehaviour
     private void OnGUI()
     {
         float aspectRatioDesign = (16f / 9f);
+
         float orthographicStartSize = 17f;
 
         float inverseAspectRatio = 1 / aspectRatioDesign;
