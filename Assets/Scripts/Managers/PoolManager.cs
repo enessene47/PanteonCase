@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class PoolManager : MonoSingleton<PoolManager>
 {
-    [SerializeField] private GameObject _objectPrefabBarrack;
-    [SerializeField] private GameObject _objectPrefabPowerPlant;
-    [SerializeField] private GameObject _objectSoldierPlant;
-
     [SerializeField] private int _poolSizeBarrackPowerPlant;
 
     private Queue<IBuildable> _pooledBarrack;
@@ -27,23 +23,21 @@ public class PoolManager : MonoSingleton<PoolManager>
 
         for (int i = 0; i < _poolSizeBarrackPowerPlant; i++)
         {
-            InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+            ObjectAddQueue(FactoryManager.Instance.CreateBarrack, _pooledBarrack);
 
-            InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+            ObjectAddQueue(FactoryManager.Instance.CreatePowerPlate, _pooledPowerPlant);
 
-            InstantiateObject(_objectSoldierPlant, _pooledSoldier);
+            ObjectAddQueue(FactoryManager.Instance.CreateSoldier, _pooledSoldier);
         }
     }
 
-    private void InstantiateObject<T>(GameObject prefab, Queue<T> queue)
+    private void ObjectAddQueue(IBuildable buildable, Queue<IBuildable> queue)
     {
-        GameObject obj = Instantiate(prefab);
+        buildable.gameObject.hideFlags = HideFlags.HideInHierarchy;
 
-        obj.hideFlags = HideFlags.HideInHierarchy;
+        buildable.gameObject.SetActive(false);
 
-        obj.SetActive(false);
-
-        queue.Enqueue(obj.GetComponent<T>());
+        queue.Enqueue(buildable.gameObject.GetComponent<IBuildable>());
     }
 
     public IBuildable GetBuilder(MenuItemScript.Type type, int soldierType = -1)
@@ -54,15 +48,15 @@ public class PoolManager : MonoSingleton<PoolManager>
         {
             case MenuItemScript.Type.Barrack:
                 if (_pooledBarrack.Count == 0)
-                    InstantiateObject(_objectPrefabBarrack, _pooledBarrack);
+                    ObjectAddQueue(FactoryManager.Instance.CreateBarrack, _pooledBarrack);
                 obj = _pooledBarrack.Dequeue(); break;
             case MenuItemScript.Type.PowerPlate:
                 if (_pooledPowerPlant.Count == 0)
-                    InstantiateObject(_objectPrefabPowerPlant, _pooledPowerPlant);
+                    ObjectAddQueue(FactoryManager.Instance.CreatePowerPlate, _pooledPowerPlant);
                 obj = _pooledPowerPlant.Dequeue(); break;
             case MenuItemScript.Type.Soldier:
                 if (_pooledSoldier.Count == 0)
-                    InstantiateObject(_objectSoldierPlant, _pooledSoldier);
+                    ObjectAddQueue(FactoryManager.Instance.CreateSoldier, _pooledSoldier);
                 obj = _pooledSoldier.Dequeue();
                 ((SoldierScript)obj).SetView(soldierType); break;
         }
