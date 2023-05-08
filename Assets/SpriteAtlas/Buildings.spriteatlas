@@ -76,6 +76,7 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 0
       enableTightPacking: 0
+      enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
@@ -83,7 +84,6 @@ SpriteAtlas:
     - {fileID: 2800000, guid: dbec6fe3bfee3d146bc21fa60d36c905, type: 3}
     - {fileID: 2800000, guid: e4abcc977820e6b4db111dc25d4c323c, type: 3}
     - {fileID: 2800000, guid: 00b4499a4f8d26e4ea7961e2f9c80067, type: 3}
-    totalSpriteSurfaceArea: 618240
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -97,7 +97,7 @@ SpriteAtlas:
   - PowerPlate
   - Barrack
   - Soldier1
-  - Soldier2
+  - soldier2
   m_RenderDataMap: {}
   m_Tag: Buildings
   m_IsVariant: 0
